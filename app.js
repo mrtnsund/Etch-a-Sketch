@@ -7,7 +7,7 @@ const elementer = document.getElementsByClassName("smadiv");
 const container = document.createElement('div');
 container.id = 'container';
 innhold.appendChild(container);
-createGrids(16);
+createGrids(20);
 
 function createGrids(antall) {
     let i = 0;
@@ -15,6 +15,8 @@ function createGrids(antall) {
         let element = document.createElement('div');
         element.id = i;
         element.classList.add("smadiv");
+        element.style.width = (100/antall) + "%";
+        element.style.height = (100/antall) + "%";
         element.addEventListener("mouseover", function (event) {
             element.style.backgroundColor = getRandomColor();
         });
@@ -38,6 +40,11 @@ const reset = () => {
     for (let i = 0; i < elementer.length; i++){
         elementer[i].style.backgroundColor = null;
     }
+    let nyStorrelse = prompt("Ny str");
+    while (container.firstChild){
+        container.removeChild(container.firstChild);
+    }
+    createGrids(nyStorrelse);
 };
 resetKnapp.addEventListener('click', reset);
 
